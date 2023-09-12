@@ -4,33 +4,39 @@ import { useSigner } from "@thirdweb-dev/react";
 
 const EASContractAddress = "0x4200000000000000000000000000000000000021"; //Optimism Goreli 
 
-export default function AddDetails() {
+export default function UniqueIdentity() {
   const [name, setName] = useState('');
-  const [age, setAge] = useState('');
   const [address, setAddress] = useState('');
-  const [storageURL, setStorageURL] = useState('');
   const [submitUID, setSubmitUID] = useState("");
   const [loading, setLoading] = useState(false);
+  const [enteredAddresses, setEnteredAddresses] = useState([]);
 
   const signer = useSigner();
 
+  const isDuplicateAddress = (address) => {
+    return enteredAddresses.includes(address);
+  };
+
   const submitAttestation = async () => {
+    if (isDuplicateAddress(address)) {
+      alert("Error: Duplicate address entered.");
+      return; // Prevent submission if it's a duplicate
+    }
+
     setSubmitUID("");
     // const signer = await wallet.getSigner();
 
     const eas = new EAS(EASContractAddress);
     eas.connect(signer);
 
-    const schemaEncoder = new SchemaEncoder("string Name, uint8 Age, address Address, string StorageURL");
+    const schemaEncoder = new SchemaEncoder("address Address, string DomainName");
     const encodedData = schemaEncoder.encodeData([
-      { name: "Name", value: name, type: "string" },
-      { name: "Age", value: age, type: "uint8" },
       { name: "Address", value: address, type:"address" },
-      { name: "StorageURL", value: storageURL, type: "string" },
+      { name: "DomainName", value: name, type: "string" },
     ]);
 
     const schemaUID =
-      "0x42dc39e1596a1b93a0bfcfbc8ff4d21d4450fc5894ef28c62cccba037487e144";
+      "0x437088a292109f39808900471acb7b0954f9b62dcbfd37bf2d25a460e523b292";
 
     const tx = await eas.attest({
       schema: schemaUID,
@@ -49,49 +55,35 @@ export default function AddDetails() {
     setLoading(false);
 
     setSubmitUID(newAttestationUID);
+    console.log(`https://optimism-goerli-bedrock.easscan.org/attestation/view/${newAttestationUID}`);
 
+    setEnteredAddresses([...enteredAddresses, address]);
     setName("");
-    setAge(0);
     setAddress("");
-    setStorageURL("");
   };
 
   return (
-    <div className="flex flex-col space-y-4 p-4 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-semibold text-black mb-4">Enter Your Details</h2>
+    <div >
+      <h2 className="text-2xl font-semibold text-white mb-4">Create your domain name!!</h2>
       <input
-        className="border border-gray-300 p-2 rounded-lg text-black"
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-    />
-    <input
-        className="border border-gray-300 p-2 rounded-lg text-black"
-        type="number"
-        placeholder="Age"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-    />
-    <input
         className="border border-gray-300 p-2 rounded-lg text-black"
         type="text"
         placeholder="Enter Address..."
         value={address}
         onChange={(e) => setAddress(e.target.value)}
     />
-    <input
+      <input
         className="border border-gray-300 p-2 rounded-lg text-black"
         type="text"
-        placeholder="WEB3StorageURL"
-        value={storageURL}
-        onChange={(e) => setStorageURL(e.target.value)}
+        placeholder="Enter your DomainName"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
     />
 
     <button 
         onClick={submitAttestation}
         className="w-72 p-2 text-white bg-slate-400 rounded-md self-center hover:bg-slate-500"
-      >
+    >
     Submit Attestation
     </button>
     {loading && <p className="mt-4 text-black">Loading...</p>}
