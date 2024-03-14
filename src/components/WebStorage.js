@@ -12,7 +12,7 @@ export default function WebStorage () {
 
   const uploadFile = async () => {
     try {
-      const client = new Web3Storage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY2MGFCNTY3ZjI2YTY5RGUwZDM3M0E4ODZkNDdlRENDQzdCOTZmMjYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2OTM1NDQ2NjU2MjEsIm5hbWUiOiJQcm9maWxlSUQifQ.eAUlsf9aDraBc0wPvjldwCfR_wK7BjeJMX5MontZ3-4" });
+      const client = new Web3Storage({ token: "Y6Jlcm9vdHOC2CpYJQABcRIgahoyDZ4kxjskPa9944qrWhxetz4IDMP0YKyBFCa9wFLYKlglAAFxEiA3W7UKZ8YJ1aSp4hnyfXGtpKIAt1uD1B_lXN4Dyxw9bWd2ZXJzaW9uAYEEAXESIGoaMg2eJMY7JD2vfeOKq1ocXrc" });
       const rootCid = await client.put([file], {
         name: fileName,
         maxRetries: 3,
@@ -35,7 +35,7 @@ export default function WebStorage () {
 
   return (
       <div className="flex flex-col items-center justify-center bg-black text-white">
-      <h2 className="text-2xl font-semibold mb-4 mt-10">Upload a File to web3.storage</h2>
+      <h2 className="text-2xl font-semibold mb-4 mt-10">Upload a File to LUV NFT</h2>
       <input
         type="file"
         className="p-2 mb-4 border border-gray-300 rounded-lg text-white"

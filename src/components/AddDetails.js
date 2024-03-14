@@ -83,7 +83,7 @@ export default function AddDetails() {
     <input
         className="border border-gray-300 p-2 rounded-lg text-black"
         type="text"
-        placeholder="WEB3StorageURL"
+        placeholder="LUV NFT PROFILE URL"
         value={storageURL}
         onChange={(e) => setStorageURL(e.target.value)}
     />

@@ -84,12 +84,12 @@ export default function UniqueIdentity() {
         onClick={submitAttestation}
         className="w-72 p-2 text-white bg-slate-400 rounded-md self-center hover:bg-slate-500"
     >
-    Submit Attestation
+    Submit Verification
     </button>
     {loading && <p className="mt-4 text-black">Loading...</p>}
     {submitUID && (
         <div className="mt-4 text-black">
-            New Attestation Submitted with UID: {submitUID}
+            New Verification Submitted with UID: {submitUID}
         </div>
     )}
 </div>

@@ -11,24 +11,25 @@
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
     "assert": "^2.0.0",
-    "browserify-zlib": "latest",
+    "browserify-zlib": "npm:browserify-zlib",
     "ethers": "^5",
     "http": "npm:http-browserify",
     "http-browserify": "latest",
     "https": "npm:https-browserify",
     "https-browserify": "latest",
     "micro-ftch": "^0.3.1",
+    "minimist": "^1.2.5",
     "react": "^18.2",
     "react-dom": "^18.2",
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.15.0",
     "react-scripts": "^5.0.1",
     "stream": "^0.0.2",
+    "superstruct": "^1.0.4",
     "url": "latest",
     "web-vitals": "^3.1.0",
-    "zlib": "npm:browserify-zlib",
-    "minimist": "^1.2.5",
-    "web3.storage": "^3.1.0"
+    "web3.storage": "^3.1.0",
+    "zlib": "npm:browserify-zlib"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -56,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "source-map-loader": "^5.0.0",
     "tailwindcss": "^3.3.3"
   }
 }

@@ -13,7 +13,7 @@ export default function Home() {
       <div className="container mx-auto">
         <div className="header text-center flex items-center justify-center">
           <h1 className="text-4xl text-white font-semibold mb-4 mr-8">
-            Welcome to Profile Create.
+          🆔 PROFILE.
           </h1>
           <div className="connect ml-8">
             <ConnectWallet
